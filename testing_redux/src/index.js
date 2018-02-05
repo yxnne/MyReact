@@ -10,6 +10,18 @@ import { counter } from './index.redux';
 
 import { add, sub, asyncToZero } from './index.redux';
 
+
+// function mapStateProps(state){
+//   return {num:state};
+// }
+
+// const actionCreators = { add, sub, asyncToZero };
+
+// App = connect(mapStateProps, actionCreators)(App);
+@connect(
+  state => ({num:state}), 
+  {add, sub, asyncToZero}
+)
 class App extends React.Component{
 
   render(){
@@ -29,14 +41,14 @@ class App extends React.Component{
   }
 }
 
-// 再封装 APP
-function mapStateProps(state){
-  return {num:state};
-}
+// // 再封装 APP,在前面使用在装饰符了
+// function mapStateProps(state){
+//   return {num:state};
+// }
 
-const actionCreators = { add, sub, asyncToZero };
+// const actionCreators = { add, sub, asyncToZero };
 
-App = connect(mapStateProps, actionCreators)(App);
+// App = connect(mapStateProps, actionCreators)(App);
 
 // redux调试工具
 const reduxDevTool = window.__REDUX_DEVTOOLS_EXTENSION__?window.__REDUX_DEVTOOLS_EXTENSION__():f=>f;
