@@ -1,6 +1,6 @@
-import { createStore } from 'redux';
 const ADD = 'ADD';
 const SUB = 'SUB';
+const ZERO = 'ZERO';
 // 根据action 变化state
 // 这个就是reducer
 export function counter(state=0, action){
@@ -9,6 +9,8 @@ export function counter(state=0, action){
       return state + 1;
     case SUB:
       return state - 1;
+    case ZERO:
+      return 0;
     default:
       return 10;
   }
@@ -20,4 +22,16 @@ export function add(){
 }
 export function sub(){
   return {type:SUB};
+}
+export function zero(){
+  return {type:ZERO};
+}
+// 异步的 action creator
+// 返回函数, 执行异步
+export function asyncToZero(){
+  return (dispatch) => {
+    setTimeout(()=>{
+      dispatch(zero());
+    }, 2000);
+  }
 }
