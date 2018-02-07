@@ -1,26 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+
 //import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import { counter } from './reducer/index.redux';
-import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
+// import { counter } from './reducer/index.redux';
+//合并reducer
+import reducers from './reducer/reducers';
+
+import { BrowserRouter, Route, Switch,Redirect } from 'react-router-dom';
+
+import Auth from './Auth.js';
+import Dashboard from './Dashboard.js';
 
 // redux调试工具
 const reduxDevTool = window.__REDUX_DEVTOOLS_EXTENSION__?window.__REDUX_DEVTOOLS_EXTENSION__():f=>f;
-const store = createStore(counter, compose(applyMiddleware(thunk), reduxDevTool));
+const store = createStore(reducers, compose(applyMiddleware(thunk), reduxDevTool));
 
-// A 组件
-function A(props){
-	return (<h2>A Component</h2>);
-}
-// B 组件
-function B(props){
-	return (<h2>B Component</h2>);
-}
+
 // 404
 class C404 extends React.Component{
 	render(){
@@ -35,19 +34,13 @@ ReactDOM.render(
 	(
 		<Provider store={store}>
 			<BrowserRouter>
-				<div>
-					<ul>
-						<li><Link to="/">App</Link></li>
-						<li><Link to="/a">A</Link></li>
-						<li><Link to="/b">B</Link></li>
-					</ul>
-					<Switch>
-						<Route path="/" exact component={App}></Route>
-						<Route path="/a" component={A}></Route>
-						<Route path="/b" component={B}></Route>
-						<Route path="/:location" component={C404}></Route>
-					</Switch>
-				</div>
+				<Switch>
+					<Route path="/login" component={Auth}></Route>
+					<Route path="/dashboard" component={Dashboard}></Route>
+					<Route path="/no" component={C404}></Route>
+					<Redirect to='/no'></Redirect>
+				</Switch>
+
 			</BrowserRouter>
 		</Provider>
 	),
