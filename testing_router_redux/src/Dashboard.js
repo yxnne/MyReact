@@ -18,10 +18,11 @@ function B(props){
 class Dashboard extends React.Component{
   render(){
     console.log(this.props);
+    const text_btn_logout = this.props.user + ", Logout";
     const redirectToLogin = <Redirect to='/login'></Redirect>;
     const app = (
       <div>
-      {this.props.isAuth?<button onClick={this.props.logout}>{this.props.user},Logout</button>:null}
+      {this.props.isAuth?<button onClick={this.props.logout}>{text_btn_logout}</button>:null}
         <ul>
           <li><Link to='/dashboard'>App</Link></li>
           <li><Link to='/dashboard/a'>A</Link></li>
