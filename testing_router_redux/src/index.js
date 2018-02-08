@@ -15,9 +15,11 @@ import { BrowserRouter, Route, Switch,Redirect } from 'react-router-dom';
 import Auth from './Auth.js';
 import Dashboard from './Dashboard.js';
 
+import './axios_config';
 // redux调试工具
 const reduxDevTool = window.__REDUX_DEVTOOLS_EXTENSION__?window.__REDUX_DEVTOOLS_EXTENSION__():f=>f;
 const store = createStore(reducers, compose(applyMiddleware(thunk), reduxDevTool));
+
 
 
 // 404
