@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import App from './App';
-import { logout } from './reducer/Auth.redux';
+import { logout, getUser } from './reducer/Auth.redux';
 
 // A 组件
 function A(props){
@@ -13,11 +13,15 @@ function B(props){
 	return (<h2>B Component</h2>);
 }
 @connect(
-  state=>(state.auth), { logout }
+  state=>(state.auth), { logout, getUser }
 )
 class Dashboard extends React.Component{
+  componentDidMount(){
+    this.props.getUser();
+  }
+
   render(){
-    console.log(this.props);
+    //console.log(this.props);
     const text_btn_logout = this.props.user + ", Logout";
     const redirectToLogin = <Redirect to='/login'></Redirect>;
     const app = (

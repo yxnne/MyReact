@@ -17,3 +17,10 @@ app.get('/jsondata', (req, rsp)=>{
     name:"express"
   });
 });
+
+app.get('/userdata', (req, rsp)=>{
+  rsp.json({
+    user:'abcde',
+    age:20
+  });
+});

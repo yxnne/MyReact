@@ -3,20 +3,20 @@ import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
 import { add, sub, async_0 } from './reducer/index.redux';
-import axios from 'axios';
+// import axios from 'axios';
 
 @connect(
   (state) =>({counter:state.counter}),
   { add, sub, async_0 }
 )
 class App extends Component {
-  componentDidMount(){
-    axios.get('/jsondata')
-    .then(res=>{
-      console.log('res is :', res);
-      console.log('data is :', res.data);
-    });
-  }
+  // componentDidMount(){
+  //   axios.get('/jsondata')
+  //   .then(res=>{
+  //     console.log('res is :', res);
+  //     console.log('data is :', res.data);
+  //   });
+  // }
 
   render() {
     return (
