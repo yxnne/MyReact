@@ -19,8 +19,16 @@ class Auth extends React.Component{
         {this.props.isAuth?<Redirect to="/dashboard"></Redirect>:null}
         <h1>Auth Page</h1>
         <button onClick={this.props.login}>Login</button>
-        <div style={{width:"200px", marginTop:"50px", marginLeft:"20px"}}>
-          <YiconInput height="18px" placeHolder="请输入您的用户名" keyPlaceHolder="用户名" onChange={(v)=>{this.onChangeInput('user',v)}}/>
+        <div style={{width:"400px", marginTop:"50px", marginLeft:"20px"}}>
+          
+
+          <YiconInput height={28}
+            placeHolder="请输入您的用户名" 
+            keyPlaceHolder="用户名" 
+            onChange={(v)=>{this.onChangeInput('user',v)}}
+            img={require('./user.png')} />
+
+
         </div>
 
       </div>

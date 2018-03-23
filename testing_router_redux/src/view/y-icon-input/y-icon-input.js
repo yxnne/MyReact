@@ -8,20 +8,7 @@ class YiconInput extends React.Component{
     super(props);
 
     this.state = {
-      imgStyle:{
-        width:this.props.height,
-        height:this.props.height
-      },
-      inputStyle:{
-        height:this.props.height,
-        fontSize:this.props.height
-      },
-      inputContainerStyle:{
-        width:"80%"
-      },
-      imgContainerStyle:{
-        width:"20%"
-      },
+      isFocus:false,
       needHintUp:false
     };
 
@@ -31,50 +18,68 @@ class YiconInput extends React.Component{
   onInputFocus(){
     console.log("onFocus");
     this.setState({
-      imgStyle:{
-        width:0,
-        height:0
-      },
-      inputContainerStyle:{
-        width:"95%"
-      },
-      imgContainerStyle:{
-        width:"0%"
-      },
-      needHintUp:true
+      isFocus:true,
     });
   }
   // when unfocus
   onInputBlur(){
     this.setState({
-      imgStyle:{
-        width:this.props.height,
-        height:this.props.height
-      },
-      inputContainerStyle:{
-        width:"80%"
-      },
-      imgContainerStyle:{
-        width:"20%"
-      },
-      needHintUp:false
+      isFocus:false,
     });
   }
 
   render(){
+    const height = this.props.height?this.props.height:20;
+    const fontSize = height - 6  ;
+    const imgStyle = this.state.isFocus
+      ?{
+        width:0,
+        height:0
+      }:{
+        width:height,
+        height:height
+      };
+
+    const inputContainerStyle = this.state.isFocus
+      ?{
+        width:"95%"
+      }:{
+        width:"80%"
+      };
+
+    const imgContainerStyle = this.state.isFocus
+      ?{
+        width:"0%"
+      }:{
+        width:"20%"
+      };
+
+      const inputStyle = {
+        height:height,
+        fontSize:fontSize,
+        marginBottom:4
+      };
+
 
     return (
       <div>
+        
         <div className="y-top-section" >
-          <span style={this.state.needHintUp?{fontSize:"5px"}:{color:"transparent"}}>{`${this.props.keyPlaceHolder?this.props.keyPlaceHolder:this.props.placeHolder}:`}</span>
-        </div>
-        <div className="y-middle-section">
-          <span className="inner-img" style={this.state.imgContainerStyle}>
-            <img  style={this.state.imgStyle} src="https://zos.alipayobjects.com/rmsportal/DfkJHaJGgMghpXdqNaKF.png"/>
+          <span style={this.state.isFocus?{color:"#999"}:{color:"transparent"}}>
+            {`${this.props.keyPlaceHolder?this.props.keyPlaceHolder:this.props.placeHolder}:`}
           </span>
-          <span className="inner-input" style={this.state.inputContainerStyle}>
-            <input style={this.state.inputStyle} type='text'
-              placeholder={this.props.placeHolder}
+        </div>
+        
+        <div className="y-middle-section">
+          
+          <span className="inner-img" style={imgContainerStyle}>
+            <img  style={imgStyle} alt="input-info"
+            src={this.props.img}/>
+          </span>
+          
+          <span className="inner-input" style={inputContainerStyle}>
+            <input style={inputStyle} type='text'
+              placeholder={this.state.isFocus?"":this.props.placeHolder}
               onFocus={()=>this.onInputFocus()}
               onBlur={()=>this.onInputBlur()}
               onChange={(e)=>this.props.onChange(e.target.value)}
