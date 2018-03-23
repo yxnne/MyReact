@@ -1,0 +1,34 @@
+.y-middle-section .inner-input{
+  display: inline-block;
+  background: none;
+  width: 80%;
+
+}
+.y-middle-section .inner-input input{
+  display: inline-block;
+  background: none;
+  width: 100%;
+  outline: none;
+  border: none;
+}
+.y-middle-section .inner-input input:focus{
+  outline: none;
+  border: none;
+}
+.y-middle-section .inner-img{
+  display: inline-block;
+  width: 20%;
+  background: none;
+  text-align: center;
+}
+
+/* underline */
+.y-underline-section{
+  width: 100%;
+  height: 2px;
+  background-color: #f00;
+}
+/* up hind section */
+.y-top-section span{
+  font-size: 5px;
+}
